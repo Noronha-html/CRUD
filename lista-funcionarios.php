@@ -3,6 +3,11 @@
 include_once './include/logado.php';
 include_once './include/conexao.php';
 include_once './include/header.php';
+
+$sql = 'SELECT f.FuncionarioID, f.Nome AS FuncionarioNome, c.Nome AS CargoNome , s.Nome AS SetorNome FROM funcionarios as f
+        INNER JOIN cargos AS c ON f.CargoID = c.CargoID
+        INNER JOIN setor AS s ON f.SetorID = s.SetorID';
+$result = mysqli_query($conn, $sql);
 ?>
 
 <main>
@@ -21,26 +26,20 @@ include_once './include/header.php';
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>Funcionário A</td>
-            <td>Cargo A</td>
-            <td>Setor A</td>
-            <td>
-              <a href="#" class="btn btn-edit">Editar</a>
-              <a href="#" class="btn btn-delete">Excluir</a>
-            </td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Funcionário B</td>
-            <td>Cargo B</td>
-            <td>Setor B</td>
-            <td>
-              <a href="#" class="btn btn-edit">Editar</a>
-              <a href="#" class="btn btn-delete">Excluir</a>
-            </td>
-          </tr>
+          <?php
+          while($row = mysqli_fetch_assoc($result)) {
+            echo "<tr>
+                    <td>" . $row['FuncionarioID'] . "</td>
+                    <td>" . $row['FuncionarioNome'] . "</td>
+                    <td>" . $row['CargoNome'] . "</td>
+                    <td>" . $row['SetorNome'] . "</td>
+                    <td>
+                        <a href='salvar-cargos.php?id=" . $row['FuncionarioID'] . "' class='btn btn-edit'>Editar</a>
+                        <a href='excluir-cargos.php?id=" . $row['FuncionarioID'] . "' class='btn btn-delete'>Excluir</a>
+                    </td>
+                  </tr>";
+          }
+          ?>
           
         </tbody>
       </table>

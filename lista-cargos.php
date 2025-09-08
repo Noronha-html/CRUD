@@ -4,8 +4,8 @@ include_once './include/logado.php';
 include_once './include/conexao.php';
 include_once './include/header.php';
 
-$sql = 'SELECT ID, Nome, TetoSalarial FROM cargos';
-$result = mysqli_query($conexao, $sql);
+$sql = 'SELECT CargoID, Nome, TetoSalarial FROM cargos';
+$result = mysqli_query($conn, $sql);
 ?>
   <main>
 
@@ -22,23 +22,19 @@ $result = mysqli_query($conexao, $sql);
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <?php
-              
-              ?>
-                <a href="salvar-cargos.php?id=" class="btn btn-edit">Editar</a>
-                <a href="#" class="btn btn-delete">Excluir</a>
-              </td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Dado B</td>
-              <td>250</td>
-              <td>
-                <a href="salvar-cargos.php?id=" class="btn btn-edit">Editar</a>
-                <a href="#" class="btn btn-delete">Excluir</a>
-              </td>
-            </tr>
+            <?php
+            while($row = mysqli_fetch_assoc($result)) {
+              echo "<tr>
+                      <td>" . $row['CargoID'] . "</td>
+                      <td>" . $row['Nome'] . "</td>
+                      <td>" . $row['TetoSalarial'] . "</td>
+                      <td>
+                          <a href='salvar-cargos.php?id=" . $row['CargoID'] . "' class='btn btn-edit'>Editar</a>
+                          <a href='excluir-cargos.php?id=" . $row['CargoID'] . "' class='btn btn-delete'>Excluir</a>
+                      </td>
+                    </tr>";
+            }
+            ?>
             
           </tbody>
         </table>

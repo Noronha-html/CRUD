@@ -1,6 +1,8 @@
 <?php
-define(DBHOST, 'localhost');
-define(DBUSER, 'root');
-define(DBPASS, '');
-define(DBBASE, 'empresa');
+define('DBSERVER', 'localhost');
+define('DBUSER', 'root');
+define('DBPASS', '');
+define('DBBASE', 'empresa');
+
+$conn = mysqli_connect(DBSERVER, DBUSER, DBPASS, DBBASE);
 ?>
