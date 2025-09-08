@@ -34,8 +34,8 @@ $result = mysqli_query($conn, $sql);
                     <td>" . $row['CargoNome'] . "</td>
                     <td>" . $row['SetorNome'] . "</td>
                     <td>
-                        <a href='salvar-cargos.php?id=" . $row['FuncionarioID'] . "' class='btn btn-edit'>Editar</a>
-                        <a href='excluir-cargos.php?id=" . $row['FuncionarioID'] . "' class='btn btn-delete'>Excluir</a>
+                        <a href='salvar-funcionarios.php?id=" . $row['FuncionarioID'] . "' class='btn btn-edit'>Editar</a>
+                        <a href='funcionarios.php?id=" . $row['FuncionarioID'] . "&acao=excluir' class='btn btn-delete'>Excluir</a>
                     </td>
                   </tr>";
           }

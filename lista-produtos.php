@@ -33,8 +33,8 @@ $result = mysqli_query($conn, $sql);
                     <td>" . $row['CategoriaNome'] . "</td>
                     <td>" . $row['Preco'] . "</td>
                     <td>
-                        <a href='salvar-cargos.php?id=" . $row['ProdutoID'] . "' class='btn btn-edit'>Editar</a>
-                        <a href='excluir-cargos.php?id=" . $row['ProdutoID'] . "' class='btn btn-delete'>Excluir</a>
+                        <a href='salvar-produtos.php?id=" . $row['ProdutoID'] . "' class='btn btn-edit'>Editar</a>
+                        <a href='produtos.php?id=" . $row['ProdutoID'] . "&acao=excluir' class='btn btn-delete'>Excluir</a>
                     </td>
                   </tr>";
           }

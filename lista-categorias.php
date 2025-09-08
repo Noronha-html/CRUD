@@ -27,8 +27,8 @@ $result = mysqli_query($conn, $sql);
                       <td>" . $row['CategoriaID'] . "</td>
                       <td>" . $row['Nome'] . "</td>
                       <td>
-                          <a href='salvar-cargos.php?id=" . $row['CategoriaID'] . "' class='btn btn-edit'>Editar</a>
-                          <a href='excluir-cargos.php?id=" . $row['CategoriaID'] . "' class='btn btn-delete'>Excluir</a>
+                          <a href='salvar-categorias.php?id=" . $row['CategoriaID'] . "' class='btn btn-edit'>Editar</a>
+                          <a href='categorias.php?id=" . $row['CategoriaID'] . "&acao=excluir' class='btn btn-delete'>Excluir</a>
                       </td>
                     </tr>";
             }

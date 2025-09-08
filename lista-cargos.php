@@ -30,7 +30,7 @@ $result = mysqli_query($conn, $sql);
                       <td>" . $row['TetoSalarial'] . "</td>
                       <td>
                           <a href='salvar-cargos.php?id=" . $row['CargoID'] . "' class='btn btn-edit'>Editar</a>
-                          <a href='excluir-cargos.php?id=" . $row['CargoID'] . "' class='btn btn-delete'>Excluir</a>
+                          <a href='./action/cargos.php?id=" . $row['CargoID'] . "&acao=excluir' class='btn btn-delete'>Excluir</a>
                       </td>
                     </tr>";
             }
