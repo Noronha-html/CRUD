@@ -22,12 +22,13 @@ $result = mysqli_query($conn, $sql);
           </thead>
           <tbody>
             <?php
+            
             while($row = mysqli_fetch_assoc($result)) {
               echo "<tr>
                       <td>" . $row['CategoriaID'] . "</td>
                       <td>" . $row['Nome'] . "</td>
                       <td>
-                          <a href='salvar-categorias.php?id=" . $row['CategoriaID'] . "' class='btn btn-edit'>Editar</a>
+                          <a href='salvar-categorias.php?id=" . $row['CategoriaID'] . "&acao=salvar' class='btn btn-edit'>Editar</a>
                           <a href='categorias.php?id=" . $row['CategoriaID'] . "&acao=excluir' class='btn btn-delete'>Excluir</a>
                       </td>
                     </tr>";

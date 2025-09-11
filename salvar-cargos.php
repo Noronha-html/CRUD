@@ -3,6 +3,9 @@
 include_once './include/logado.php';
 include_once './include/conexao.php';
 include_once './include/header.php';
+
+$acao = $_GET['acao'];
+$id = $_GET['id'];
 ?>
   <main>
 
@@ -10,8 +13,22 @@ include_once './include/header.php';
    <div id="cargos" class="tela">
     <form class="crud-form" action="./action/cargos.php" method="post">
       <h2>Cadastro de Cargos</h2>
-      <input type="text" placeholder="Nome do Cargo">
-      <input type="number" placeholder="Teto Salarial">
+      <?php
+      switch ($acao) {
+        case 'salvar':
+          $sql = 'SELECT Nome, TetoSalarial FROM cargos WHERE CargoID ='.$id;
+          $result = mysqli_query($conn, $sql);
+          while ($row = mysqli_fetch_assoc($result)) {
+            echo "<input type='text' placeholder=".$row['Nome'].">
+                  <input type='number' placeholder=".$row['TetoSalarial'].">";
+          }
+          break;
+        
+        default:
+          # code...
+          break;
+      }
+      ?>
       <button type="submit">Salvar</button>
     </form>
   </div>
