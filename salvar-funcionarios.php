@@ -18,30 +18,46 @@ $id = $_GET['id'];
           switch ($acao) {
             case 'salvar':
               $sql = "SELECT f.Nome AS FuncionarioNome, f.DataNascimento, f.Email, f.Salario, f.Sexo, f.CPF, f.RG,
-              c.Nome AS CargoNome, s.Nome AS SetorNome;
+              c.Nome AS CargoNome, s.Nome AS SetorNome
               FROM funcionarios AS f
-              WHERE CargoID ='.$id.'
               INNER JOIN cargos AS c ON f.CargoID = c.CargoID
-              INNER JOIN setor AS s ON f.SetorID = s.SetorID";
+              INNER JOIN setor AS s ON f.SetorID = s.SetorID
+              WHERE f.FuncionarioID = $id";
               $result = mysqli_query($conn, $sql);
-              while ($row = mysqli_fetch_assoc($result)) {
-                echo "<input type='text' placeholder=".$row['FuncionarioNome'].">
-                      <input type='date' placeholder=".$row['DataNascimento'].">
-                      <input type='email' placeholder=".$row['Email'].">
-                      <input type='number' placeholder=".$row['Salario'].">
-                      <select>
-                        <option value=".$row['Sexo']."></option>
-                        <option value='M'>Masculino</option>
-                        <option value='F'>Feminino</option>
-                      </select>
-                      <input type='text' placeholder=".$row['CPF'].">
-                      <input type='text' placeholder=".$row['RG'].">
-                      <select>
-                        <option value=".$row['CargoNome'].">Cargo</option>
-                      </select>
-                      <select>
-                        <option value=".$row['SetorNome'].">Setor</option>
-                      </select>";
+              while ($func = mysqli_fetch_assoc($result)) {
+                ?>
+                <input type='text' placeholder='<?php echo $func['FuncionarioNome']; ?>'>
+                <input type='date' placeholder='<?php echo $func['DataNascimento']; ?>'>
+                <input type='email' placeholder='<?php echo $func['Email']; ?>'>
+                <input type='number' placeholder='<?php echo $func['Salario']; ?>'>
+                <select>
+                  <option value='<?php echo $func['Sexo']; ?>'><?php echo $func['Sexo']; ?></option>
+                  <option value='M'>Masculino</option>
+                  <option value='F'>Feminino</option>
+                </select>
+                <input type='text' placeholder='<?php echo $func['CPF']; ?>'>
+                <input type='text' placeholder='<?php echo $func['RG']; ?>'>
+                <select>
+                  <?php
+                    $sqlCargo = "SELECT Nome FROM cargos";
+                    $resultCargo = mysqli_query($conn, $sqlCargo);
+                    while ($cargo = mysqli_fetch_assoc($resultCargo)) {
+                      $selected = ($cargo['Nome'] == $func['CargoNome']) ? "selected" : "";
+                      echo "<option value='".$cargo['Nome']."' $selected>".$cargo['Nome']."</option>";
+                    }
+                  ?>
+                </select>
+                <select>
+                  <?php
+                    $sqlSetor = "SELECT Nome FROM setor";
+                    $resultSetor = mysqli_query($conn, $sqlSetor);
+                    while ($setor = mysqli_fetch_assoc($resultSetor)) {
+                      $selected = ($setor['Nome'] == $func['SetorNome']) ? "selected" : "";
+                      echo "<option value='".$setor['Nome']."' $selected>".$setor['Nome']."</option>";
+                    }
+                  ?>
+                </select>
+                <?php
               }
               break;
             
