@@ -11,7 +11,7 @@ $result = mysqli_query($conn, $sql);
 
     <div class="container">
         <h1>Lista de Setores</h1>
-        <a href="./salvar-setores.php" class="btn btn-add">Incluir</a>
+        <a href="./salvar-setores.php?acao=salvar&id=" class="btn btn-add">Incluir</a>
         
         <table>
           <thead>
@@ -32,8 +32,8 @@ $result = mysqli_query($conn, $sql);
                       <td>" . $row['Andar'] . "</td>
                       <td>" .$row['Cor'] . "</td>
                       <td>
-                          <a href='salvar-setores.php?id=" . $row['SetorID'] . "' class='btn btn-edit'>Editar</a>
-                          <a href='setores.php?id=" . $row['SetorID'] . "&acao=excluir' class='btn btn-delete'>Excluir</a>
+                          <a href='salvar-setores.php?id=" . $row['SetorID'] . "&acao=salvar' class='btn btn-edit'>Editar</a>
+                          <a href='./action/setores.php?id=" . $row['SetorID'] . "&acao=excluir' class='btn btn-delete'>Excluir</a>
                       </td>
                     </tr>";
             }

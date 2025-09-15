@@ -13,7 +13,7 @@ $result = mysqli_query($conn, $sql);
 
   <div class="container">
       <h1>Lista de Produtos</h1>
-      <a href="./salvar-produtos.php" class="btn btn-add">Incluir</a> 
+      <a href="./salvar-produtos.php?acao=salvar&id=" class="btn btn-add">Incluir</a> 
       <table>
         <thead>
           <tr>
@@ -33,8 +33,8 @@ $result = mysqli_query($conn, $sql);
                     <td>" . $row['CategoriaNome'] . "</td>
                     <td>" . $row['Preco'] . "</td>
                     <td>
-                        <a href='salvar-produtos.php?id=" . $row['ProdutoID'] . "' class='btn btn-edit'>Editar</a>
-                        <a href='produtos.php?id=" . $row['ProdutoID'] . "&acao=excluir' class='btn btn-delete'>Excluir</a>
+                        <a href='salvar-produtos.php?id=" . $row['ProdutoID'] . "&acao=salvar' class='btn btn-edit'>Editar</a>
+                        <a href='./action/produtos.php?id=" . $row['ProdutoID'] . "&acao=excluir' class='btn btn-delete'>Excluir</a>
                     </td>
                   </tr>";
           }

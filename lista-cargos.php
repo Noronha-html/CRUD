@@ -11,7 +11,7 @@ $result = mysqli_query($conn, $sql);
 
     <div class="container">
         <h1>Lista de Cargos</h1>
-        <a href="./salvar-cargos.php" class="btn btn-add">Incluir</a>
+        <a href="./salvar-cargos.php?acao=salvar&id=" class="btn btn-add">Incluir</a>
         <table>
           <thead>
             <tr>

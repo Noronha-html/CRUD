@@ -6,7 +6,8 @@ include_once './include/header.php';
 
 $sql = 'SELECT f.FuncionarioID, f.Nome AS FuncionarioNome, c.Nome AS CargoNome , s.Nome AS SetorNome FROM funcionarios as f
         INNER JOIN cargos AS c ON f.CargoID = c.CargoID
-        INNER JOIN setor AS s ON f.SetorID = s.SetorID';
+        INNER JOIN setor AS s ON f.SetorID = s.SetorID
+        ORDER BY FuncionarioID';
 $result = mysqli_query($conn, $sql);
 ?>
 
@@ -14,7 +15,7 @@ $result = mysqli_query($conn, $sql);
 
   <div class="container">
       <h1>Lista de Funcionários</h1>
-      <a href="./salvar-funcionarios.php" class="btn btn-add">Incluir</a> 
+      <a href="./salvar-funcionarios.php?acao=salvar&id=" class="btn btn-add">Incluir</a> 
       <table>
         <thead>
           <tr>
@@ -35,7 +36,7 @@ $result = mysqli_query($conn, $sql);
                     <td>" . $row['SetorNome'] . "</td>
                     <td>
                         <a href='salvar-funcionarios.php?id=" . $row['FuncionarioID'] . "&acao=salvar' class='btn btn-edit'>Editar</a>
-                        <a href='funcionarios.php?id=" . $row['FuncionarioID'] . "&acao=excluir' class='btn btn-delete'>Excluir</a>
+                        <a href='./action/funcionarios.php?id=" . $row['FuncionarioID'] . "&acao=excluir' class='btn btn-delete'>Excluir</a>
                     </td>
                   </tr>";
           }
