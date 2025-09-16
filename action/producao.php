@@ -20,15 +20,13 @@ switch ($acao) {
             $sql = "UPDATE producao SET
             ProdutoID = (SELECT ProdutoID FROM produtos WHERE Nome = '".$_POST['Produto']."'),
             FuncionarioID = (SELECT FuncionarioID FROM funcionarios WHERE Nome = '".$_POST['Funcionario']."'),
-            DataProducao = '".$_POST['DataProducao']."',
-            QuantidadeProduzida = '".$_POST['QuantidadeProduzida']."'
+            DataProducao = '".$_POST['DataProducao']."'
             WHERE ProducaoID = ".$id;
         } else {
-            $sql = "INSERT INTO producao (ProdutoID, FuncionarioID, DataProducao, QuantidadeProduzida) VALUES (
+            $sql = "INSERT INTO producao (ProdutoID, FuncionarioID, DataProducao) VALUES (
                 (SELECT ProdutoID FROM produtos WHERE Nome = '".$_POST['Produto']."'),
                 (SELECT FuncionarioID FROM funcionarios WHERE Nome = '".$_POST['Funcionario']."'),
-                '".$_POST['DataProducao']."',
-                '".$_POST['QuantidadeProduzida']."'
+                '".$_POST['DataProducao']."'
             )";
         }
         mysqli_query($conn,$sql);

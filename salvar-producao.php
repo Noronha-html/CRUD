@@ -28,70 +28,58 @@ $id = $_REQUEST['id'] ?? '';
                 $result = mysqli_query($conn, $sql);
                 while($row = mysqli_fetch_assoc($result)) {
                   ?>
-                  <select>
+                  <select name="Funcionario">
                     <?php
                     $sqlFunc = "SELECT Nome FROM funcionarios";
                     $resultFunc = mysqli_query($conn, $sqlFunc);
                     while($rowFunc = mysqli_fetch_assoc($resultFunc)) {
                       $selected = ($rowFunc['Nome'] == $row['FuncionarioNome']) ? 'selected' : '';
-                      echo '<option value="'.htmlspecialchars($rowFunc['Nome']).'" name="Funcionario" '.$selected.'>'.htmlspecialchars($rowFunc['Nome']).'</option>';
+                      echo '<option value="'.htmlspecialchars($rowFunc['Nome']).'" '.$selected.'>'.htmlspecialchars($rowFunc['Nome']).'</option>';
                     }
                     ?>
                   </select>
-                  <select>
+                  <select name="Produto">
                     <?php
                     $sqlProd = "SELECT Nome FROM produtos";
                     $resultProd = mysqli_query($conn, $sqlProd);
                     while($rowProd = mysqli_fetch_assoc($resultProd)) {
                       $selected = ($rowProd['Nome'] == $row['ProdutoNome']) ? 'selected' : '';
-                      echo '<option value="'.htmlspecialchars($rowProd['Nome']).'" name="Produto" '.$selected.'>'.htmlspecialchars($rowProd['Nome']).'</option>';
+                      echo '<option value="'.htmlspecialchars($rowProd['Nome']).'" '.$selected.'>'.htmlspecialchars($rowProd['Nome']).'</option>';
                     }
                     ?>
                   </select>
                   <label for="">Data da entrega</label>
-                  <input type="date" value="<?php echo $row['DataProducao']; ?>" name="DataProducao" placeholder="Data da Entrega">
-                  <input type="number" placeholder="Quantidade Produzida" name="QuantidadeProduzida">
+                  <input type="date" name="DataProducao" value="<?php echo $row['DataProducao']; ?>" placeholder="Data da Entrega">
                   <button type="submit">Salvar</button>
                   <?php
                 }
               } else {
                 ?>
-                <select>
+                <select name="Funcionario">
                 <?php
                 $sql = "SELECT Nome FROM funcionarios";
                 $result = mysqli_query($conn, $sql);
                 while($row = mysqli_fetch_assoc($result)) {
-                  echo '<option value="'.htmlspecialchars($row['Nome']).'" name="Funcionario">'.htmlspecialchars($row['Nome']).'</option>';
+                  echo '<option value="'.htmlspecialchars($row['Nome']).'">'.htmlspecialchars($row['Nome']).'</option>';
                 }
                 ?>
                 </select>
-                <select>
+                <select name="Produto">
                   <?php
                   $sql = "SELECT Nome FROM produtos";
                   $result = mysqli_query($conn, $sql);
                   while($row = mysqli_fetch_assoc($result)) {
-                    echo '<option value="'.htmlspecialchars($row['Nome']).'" name="Produto">'.htmlspecialchars($row['Nome']).'</option>';
+                    echo '<option value="'.htmlspecialchars($row['Nome']).'">'.htmlspecialchars($row['Nome']).'</option>';
                   }
                   ?>
                 </select>
                 <label for="">Data da entrega</label>
                 <input type="date" placeholder="Data da Entrega" name="DataProducao">
-                <input type="number" placeholder="Quantidade Produzida" name="QuantidadeProduzida">
                 <button type="submit">Salvar</button>
                 <?php
               }
           }
           ?>
-          <select>
-            <option value="">Funcionário</option>
-          </select>
-          <select>
-            <option value="">Produto</option>
-          </select>
-          <label for="">Data da entrega</label>
-          <input type="date" placeholder="Data da Entrega">
-          <input type="number" placeholder="Quantidade Produzida">
-          <button type="submit">Salvar</button>
         </form>
       </div>
    
